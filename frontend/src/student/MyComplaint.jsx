@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function MyComplaint() {
   const [filter, setFilter] = useState("All");
+  const [search, setSearch] = useState("");
 
   const complaints = [
     {
@@ -13,7 +14,8 @@ function MyComplaint() {
       priority: "High",
       status: "Pending",
       date: "15 Aug 2026",
-      description: "Fan is making unusual noise and stops after a few minutes.",
+      description:
+        "Fan is making unusual noise and stops after a few minutes.",
     },
     {
       id: 2,
@@ -23,7 +25,8 @@ function MyComplaint() {
       priority: "Medium",
       status: "In Progress",
       date: "14 Aug 2026",
-      description: "Internet connection is unstable in the computer laboratory.",
+      description:
+        "Internet connection is unstable in the computer laboratory.",
     },
     {
       id: 3,
@@ -33,14 +36,26 @@ function MyComplaint() {
       priority: "Low",
       status: "Resolved",
       date: "12 Aug 2026",
-      description: "Water leakage near the entrance of Block A.",
+      description:
+        "Water leakage near the entrance of Block A.",
     },
   ];
 
-  const filteredComplaints =
-    filter === "All"
-      ? complaints
-      : complaints.filter((complaint) => complaint.status === filter);
+  const filteredComplaints = complaints.filter((complaint) => {
+    const matchesFilter =
+      filter === "All" || complaint.status === filter;
+
+    const searchText = search.toLowerCase();
+
+    const matchesSearch =
+      complaint.title.toLowerCase().includes(searchText) ||
+      complaint.category.toLowerCase().includes(searchText) ||
+      complaint.location.toLowerCase().includes(searchText) ||
+      complaint.status.toLowerCase().includes(searchText) ||
+      complaint.description.toLowerCase().includes(searchText);
+
+    return matchesFilter && matchesSearch;
+  });
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -124,36 +139,99 @@ function MyComplaint() {
 
         </div>
 
-        {/* Filter */}
-        <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
+        {/* Search + Filter */}
+        <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl">
 
-          <div>
-            <h2 className="font-bold text-white">
-              Complaint History
-            </h2>
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
 
-            <p className="text-sm text-slate-500">
-              Showing {filteredComplaints.length} complaint(s)
-            </p>
+            {/* Search */}
+            <div className="w-full lg:max-w-md">
+
+              <label className="mb-2 block text-sm font-semibold text-slate-300">
+                🔍 Search Complaints
+              </label>
+
+              <div className="relative">
+
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search by title, category, location..."
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/70 px-4 py-3 pr-10 text-sm text-white outline-none placeholder:text-slate-600 transition focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-400/10"
+                />
+
+                {search && (
+                  <button
+                    onClick={() => setSearch("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white"
+                  >
+                    ✕
+                  </button>
+                )}
+
+              </div>
+
+            </div>
+
+            {/* Filter */}
+            <div className="w-full lg:w-auto">
+
+              <p className="mb-2 text-sm font-semibold text-slate-300">
+                Filter by Status
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+
+                {["All", "Pending", "In Progress", "Resolved"].map(
+                  (item) => (
+                    <button
+                      key={item}
+                      onClick={() => setFilter(item)}
+                      className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
+                        filter === item
+                          ? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/20"
+                          : "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white"
+                      }`}
+                    >
+                      {item}
+                    </button>
+                  )
+                )}
+
+              </div>
+
+            </div>
+
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          {/* Result Information */}
+          <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-white/5 pt-4">
 
-            {["All", "Pending", "In Progress", "Resolved"].map((item) => (
+            <div>
+              <h2 className="font-bold text-white">
+                Complaint History
+              </h2>
+
+              <p className="text-sm text-slate-500">
+                Showing {filteredComplaints.length} complaint(s)
+              </p>
+            </div>
+
+            {(search || filter !== "All") && (
               <button
-                key={item}
-                onClick={() => setFilter(item)}
-                className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
-                  filter === item
-                    ? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/20"
-                    : "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white"
-                }`}
+                onClick={() => {
+                  setSearch("");
+                  setFilter("All");
+                }}
+                className="rounded-lg bg-white/5 px-3 py-2 text-xs font-semibold text-slate-400 transition hover:bg-white/10 hover:text-white"
               >
-                {item}
+                Clear Search & Filter
               </button>
-            ))}
+            )}
 
           </div>
+
         </div>
 
         {/* Complaints */}
@@ -168,15 +246,29 @@ function MyComplaint() {
 
           {filteredComplaints.length === 0 && (
             <div className="rounded-3xl border border-white/10 bg-white/5 p-12 text-center backdrop-blur-xl">
-              <div className="text-5xl">📭</div>
+
+              <div className="text-5xl">
+                🔍
+              </div>
 
               <h3 className="mt-4 text-xl font-bold text-white">
                 No complaints found
               </h3>
 
               <p className="mt-2 text-slate-400">
-                There are no complaints with this status.
+                Try another search term or change the status filter.
               </p>
+
+              <button
+                onClick={() => {
+                  setSearch("");
+                  setFilter("All");
+                }}
+                className="mt-5 rounded-xl bg-cyan-500 px-5 py-3 font-bold text-white transition hover:bg-cyan-400"
+              >
+                Show All Complaints
+              </button>
+
             </div>
           )}
 
@@ -193,6 +285,7 @@ function StatCard({ title, value, icon, text }) {
     <div className="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-400/20 hover:bg-white/8">
 
       <div className="flex items-center justify-between">
+
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-2xl">
           {icon}
         </div>
@@ -200,6 +293,7 @@ function StatCard({ title, value, icon, text }) {
         <span className="text-xs font-semibold text-slate-500">
           {text}
         </span>
+
       </div>
 
       <p className="mt-6 text-sm font-medium text-slate-400">
@@ -217,9 +311,14 @@ function StatCard({ title, value, icon, text }) {
 /* Complaint Card */
 function ComplaintCard({ complaint }) {
   const statusStyle = {
-    Pending: "bg-yellow-400/10 text-yellow-300 border-yellow-400/20",
-    "In Progress": "bg-blue-400/10 text-blue-300 border-blue-400/20",
-    Resolved: "bg-green-400/10 text-green-300 border-green-400/20",
+    Pending:
+      "bg-yellow-400/10 text-yellow-300 border-yellow-400/20",
+
+    "In Progress":
+      "bg-blue-400/10 text-blue-300 border-blue-400/20",
+
+    Resolved:
+      "bg-green-400/10 text-green-300 border-green-400/20",
   };
 
   const priorityStyle = {
@@ -231,14 +330,12 @@ function ComplaintCard({ complaint }) {
   return (
     <div className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-400/20 hover:shadow-2xl hover:shadow-blue-950/30">
 
-      {/* Top line */}
       <div className="h-1 bg-linear-to-r from-cyan-400 via-blue-500 to-indigo-600" />
 
       <div className="p-6 sm:p-7">
 
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
 
-          {/* Details */}
           <div className="flex gap-4">
 
             <div className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-cyan-400/20 to-blue-500/20 text-2xl sm:flex">
@@ -246,6 +343,7 @@ function ComplaintCard({ complaint }) {
             </div>
 
             <div>
+
               <div className="flex flex-wrap items-center gap-3">
 
                 <h3 className="text-xl font-bold text-white">
@@ -283,11 +381,11 @@ function ComplaintCard({ complaint }) {
                 </span>
 
               </div>
+
             </div>
 
           </div>
 
-          {/* Right */}
           <div className="flex shrink-0 items-center justify-between gap-4 lg:flex-col lg:items-end">
 
             <span
@@ -297,7 +395,7 @@ function ComplaintCard({ complaint }) {
             </span>
 
             <Link
-              to={`/student/complaints/${complaint.id}`}
+              to={`/student/complaint/${complaint.id}`}
               className="rounded-xl bg-linear-to-r from-cyan-500 to-blue-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-500/10 transition hover:scale-105"
             >
               View Details →
