@@ -5,6 +5,7 @@ import SubmitComplaint from "./student/SubmitComplaint";
 import MyComplaint from "./student/MyComplaint";
 import ComplaintDetails from "./student/ComplaintDetails";
 import StudentProfile from "./student/StudentProfile";
+import AdminLogin from "./admin/AdminLogin";
 
 function App() {
   return (
@@ -37,6 +38,12 @@ function App() {
         path="/student/profile"
         element={<StudentProfile />}
       />
+
+       <Route
+        path="/admin"
+        element={<AdminLogin />}
+      />
+
 
     </Routes>
   );
