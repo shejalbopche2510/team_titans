@@ -141,3 +141,45 @@ body {
 .action-button:hover {
   opacity: 0.85;
 }
+/* Admin Login UI */
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eef3f8;
+  padding: 20px;
+}
+
+.admin-login-page .login-card {
+  width: 380px;
+  padding: 35px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.admin-login-page .login-card h1 {
+  color: #1e3a5f;
+  margin-bottom: 8px;
+}
+
+.admin-login-page .login-subtitle {
+  color: #666;
+  text-align: center;
+}
+
+.admin-login-page .login-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 7px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-login-page .login-button:hover {
+  background: #1d4ed8;
+}
