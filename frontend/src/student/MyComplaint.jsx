@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function MyComplaints() {
+function MyComplaint() {
   const [filter, setFilter] = useState("All");
 
   const complaints = [
@@ -312,4 +312,4 @@ function ComplaintCard({ complaint }) {
   );
 }
 
-export default MyComplaints;
+export default MyComplaint;
