@@ -9,7 +9,8 @@ import StudentProfile from "./student/StudentProfile";
 function App() {
   return (
     <Routes>
-      {/* Dashboard */}
+
+      {/* Student Dashboard */}
       <Route path="/" element={<StudentDashboard />} />
       <Route path="/student" element={<StudentDashboard />} />
 
@@ -21,7 +22,7 @@ function App() {
 
       {/* My Complaints */}
       <Route
-        path="/student/complaints"
+        path="/student/complaint"
         element={<MyComplaint />}
       />
 
@@ -36,6 +37,7 @@ function App() {
         path="/student/profile"
         element={<StudentProfile />}
       />
+
     </Routes>
   );
 }
