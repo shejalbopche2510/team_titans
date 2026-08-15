@@ -41,6 +41,7 @@ function AdminDashboard() {
               <th>Category</th>
               <th>Location</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
 
@@ -49,21 +50,66 @@ function AdminDashboard() {
               <td>Wi-Fi Not Working</td>
               <td>Wi-Fi</td>
               <td>Computer Lab</td>
-              <td>Pending</td>
+
+              <td>
+                <span className="status pending">
+                  Pending
+                </span>
+              </td>
+
+              <td>
+                <button className="action-button">
+                  View
+                </button>
+
+                <button className="action-button">
+                  Update
+                </button>
+              </td>
             </tr>
 
             <tr>
               <td>Water Leakage</td>
               <td>Water</td>
               <td>Hostel</td>
-              <td>In Progress</td>
+
+              <td>
+                <span className="status progress">
+                  In Progress
+                </span>
+              </td>
+
+              <td>
+                <button className="action-button">
+                  View
+                </button>
+
+                <button className="action-button">
+                  Update
+                </button>
+              </td>
             </tr>
 
             <tr>
               <td>Classroom Light Problem</td>
               <td>Electricity</td>
               <td>Room 204</td>
-              <td>Resolved</td>
+
+              <td>
+                <span className="status resolved">
+                  Resolved
+                </span>
+              </td>
+
+              <td>
+                <button className="action-button">
+                  View
+                </button>
+
+                <button className="action-button">
+                  Update
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
