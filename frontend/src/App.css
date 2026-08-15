@@ -78,3 +78,30 @@ body {
 .dashboard-card h2 {
   font-size: 30px;
 }
+.complaints-section {
+  margin-top: 40px;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.complaints-section h2 {
+  margin-bottom: 20px;
+}
+
+.complaints-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.complaints-table th,
+.complaints-table td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.complaints-table th {
+  background: #f4f6f8;
+}
