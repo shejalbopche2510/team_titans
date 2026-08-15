@@ -22,7 +22,7 @@ function App() {
 
       {/* My Complaints */}
       <Route
-        path="/student/complaint"
+        path="/student/complaints"
         element={<MyComplaint />}
       />
 
