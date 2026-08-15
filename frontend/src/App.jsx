@@ -13,7 +13,7 @@ function App() {
 
       {/* Student Dashboard */}
       <Route path="/" element={<StudentDashboard />} />
-      <Route path="/student" element={<StudentDashboard />} />
+      <Route path="/admin/dashboard" element={<StudentDashboard />} />
 
       {/* Submit Complaint */}
       <Route
