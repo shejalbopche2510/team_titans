@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import StudentDashboard from "./student/StudentDashboard";
 import SubmitComplaint from "./student/SubmitComplaint";
-import MyComplaints from "./student/MyComplaint";
+import MyComplaint from "./student/MyComplaint";
 import ComplaintDetails from "./student/ComplaintDetails";
 import StudentProfile from "./student/StudentProfile";
 
