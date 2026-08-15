@@ -2,53 +2,74 @@ import { Link } from "react-router-dom";
 
 function StudentProfile() {
   return (
-    <div className="min-h-screen bg-[#f5f7fb]">
-      {/* Top Navbar */}
-      <nav className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+    <div className="min-h-screen bg-slate-950">
+
+      {/* Background Glow */}
+      <div className="fixed inset-0 -z-0 overflow-hidden">
+        <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-600/20 blur-3xl" />
+        <div className="absolute right-0 top-1/4 h-[450px] w-[450px] rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 h-[400px] w-[400px] rounded-full bg-violet-600/10 blur-3xl" />
+      </div>
+
+      <main className="relative z-10 mx-auto max-w-7xl px-5 py-8 sm:px-8">
+
+        {/* Top Bar */}
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
           <div>
-            <h1 className="text-2xl font-black tracking-tight text-slate-900">
-              Smart<span className="text-blue-600">Campus</span>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-400">
+              Student Portal
+            </p>
+
+            <h1 className="mt-2 text-3xl font-black text-white sm:text-4xl">
+              My Profile
             </h1>
-            <p className="hidden text-xs text-slate-500 sm:block">
-              Student Complaint Management
+
+            <p className="mt-2 text-sm text-slate-500">
+              Manage your profile and track your complaint activity.
             </p>
           </div>
 
           <Link
             to="/student"
-            className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600"
+            className="w-fit rounded-xl border border-white/10 bg-white/5 px-5 py-3 font-semibold text-slate-300 backdrop-blur-xl transition hover:bg-white/10 hover:text-white"
           >
             ← Dashboard
           </Link>
+
         </div>
-      </nav>
 
-      <main className="mx-auto max-w-7xl px-5 py-8 sm:px-8">
+        {/* Profile Hero */}
+        <section className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-blue-700 via-indigo-700 to-violet-800 p-7 shadow-2xl sm:p-10">
 
-        {/* Hero Profile */}
-        <section className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-700 via-indigo-700 to-violet-800 p-7 shadow-2xl sm:p-10">
+          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+          <div className="absolute -bottom-32 left-1/4 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" />
 
-          {/* Decorative circles */}
-          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-2xl" />
-          <div className="absolute -bottom-24 left-20 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
+          <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
 
-          <div className="relative flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
-
-            <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:text-left">
+            <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
 
               {/* Avatar */}
-              <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-4 border-white/30 bg-white/20 text-5xl font-black text-white shadow-2xl backdrop-blur-md">
-                S
+              <div className="relative">
+
+                <div className="flex h-32 w-32 items-center justify-center rounded-full border-4 border-white/20 bg-white/15 text-5xl font-black text-white shadow-2xl backdrop-blur-xl">
+                  S
+                </div>
+
+                <div className="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-full border-4 border-indigo-700 bg-emerald-400">
+                  ✓
+                </div>
+
               </div>
 
               <div>
-                <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-emerald-400/20 px-3 py-1 text-xs font-bold text-emerald-200">
+
+                <span className="inline-flex items-center gap-2 rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs font-bold text-emerald-200">
                   <span className="h-2 w-2 rounded-full bg-emerald-300" />
                   ACTIVE STUDENT
-                </div>
+                </span>
 
-                <h2 className="text-3xl font-black text-white sm:text-4xl">
+                <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">
                   Student Name
                 </h2>
 
@@ -59,92 +80,68 @@ function StudentProfile() {
                 <p className="mt-1 text-sm text-blue-200">
                   student@example.com
                 </p>
+
               </div>
+
             </div>
 
-            <button className="rounded-xl bg-white px-6 py-3 font-bold text-blue-700 shadow-lg transition hover:-translate-y-1 hover:bg-blue-50">
+            <button
+              type="button"
+              className="rounded-xl bg-white px-6 py-3 font-bold text-blue-700 shadow-xl transition hover:-translate-y-1 hover:bg-blue-50"
+            >
               ✏️ Edit Profile
             </button>
 
           </div>
         </section>
 
-        {/* Statistics */}
+        {/* Stats */}
         <section className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
-          <div className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-            <div className="flex items-center justify-between">
-              <div className="rounded-xl bg-blue-100 p-3 text-xl">
-                📋
-              </div>
+          <Stat
+            icon="📋"
+            title="Total Complaints"
+            value="05"
+            subtitle="All submissions"
+          />
 
-              <span className="text-xs font-bold text-emerald-600">
-                +12%
-              </span>
-            </div>
+          <Stat
+            icon="⏳"
+            title="Pending"
+            value="02"
+            subtitle="Waiting for action"
+          />
 
-            <p className="mt-5 text-sm font-medium text-slate-500">
-              Total Complaints
-            </p>
+          <Stat
+            icon="🔄"
+            title="In Progress"
+            value="01"
+            subtitle="Currently processing"
+          />
 
-            <h3 className="mt-1 text-3xl font-black text-slate-900">
-              05
-            </h3>
-          </div>
-
-          <div className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-            <div className="rounded-xl bg-amber-100 p-3 text-xl w-fit">
-              ⏳
-            </div>
-
-            <p className="mt-5 text-sm font-medium text-slate-500">
-              Pending
-            </p>
-
-            <h3 className="mt-1 text-3xl font-black text-amber-600">
-              02
-            </h3>
-          </div>
-
-          <div className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-            <div className="rounded-xl bg-indigo-100 p-3 text-xl w-fit">
-              🔄
-            </div>
-
-            <p className="mt-5 text-sm font-medium text-slate-500">
-              In Progress
-            </p>
-
-            <h3 className="mt-1 text-3xl font-black text-indigo-600">
-              01
-            </h3>
-          </div>
-
-          <div className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-            <div className="rounded-xl bg-emerald-100 p-3 text-xl w-fit">
-              ✅
-            </div>
-
-            <p className="mt-5 text-sm font-medium text-slate-500">
-              Resolved
-            </p>
-
-            <h3 className="mt-1 text-3xl font-black text-emerald-600">
-              02
-            </h3>
-          </div>
+          <Stat
+            icon="✅"
+            title="Resolved"
+            value="02"
+            subtitle="Successfully completed"
+          />
 
         </section>
 
-        {/* Information + Activity */}
+        {/* Main Grid */}
         <section className="mt-8 grid gap-8 lg:grid-cols-3">
 
           {/* Personal Information */}
-          <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm lg:col-span-2">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-xl lg:col-span-2">
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-start justify-between">
+
               <div>
-                <h3 className="text-xl font-black text-slate-900">
+                <p className="text-xs font-bold uppercase tracking-widest text-cyan-400">
+                  Account
+                </p>
+
+                <h3 className="mt-2 text-2xl font-black text-white">
                   Personal Information
                 </h3>
 
@@ -153,186 +150,355 @@ function StudentProfile() {
                 </p>
               </div>
 
-              <span className="rounded-xl bg-blue-50 px-3 py-2 text-blue-600">
+              <div className="rounded-xl bg-cyan-400/10 p-3 text-xl">
                 👤
-              </span>
+              </div>
+
             </div>
 
-            <div className="mt-7 grid gap-5 sm:grid-cols-2">
+            <div className="mt-7 grid gap-4 sm:grid-cols-2">
 
-              <InfoCard
+              <Info
+                icon="👤"
                 label="Full Name"
                 value="Student Name"
-                icon="👤"
               />
 
-              <InfoCard
+              <Info
+                icon="🪪"
                 label="Student ID"
                 value="STU001"
-                icon="🪪"
               />
 
-              <InfoCard
+              <Info
+                icon="💻"
                 label="Department"
                 value="Information Technology"
-                icon="💻"
               />
 
-              <InfoCard
-                label="Email Address"
-                value="student@example.com"
-                icon="✉️"
-              />
-
-              <InfoCard
+              <Info
+                icon="🎓"
                 label="Academic Year"
                 value="2025 - 2026"
-                icon="🎓"
               />
 
-              <InfoCard
-                label="Account Status"
-                value="Active"
-                icon="🟢"
+              <Info
+                icon="✉️"
+                label="Email"
+                value="student@example.com"
+              />
+
+              <Info
+                icon="📱"
+                label="Phone"
+                value="+91 XXXXX XXXXX"
               />
 
             </div>
           </div>
 
           {/* Quick Actions */}
-          <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
 
-            <h3 className="text-xl font-black text-slate-900">
+            <p className="text-xs font-bold uppercase tracking-widest text-cyan-400">
+              Quick Access
+            </p>
+
+            <h3 className="mt-2 text-2xl font-black text-white">
               Quick Actions
             </h3>
 
-            <p className="mt-1 text-sm text-slate-500">
-              Manage your complaints
-            </p>
-
             <div className="mt-6 space-y-3">
 
-              <Link
+              <Action
                 to="/student/submit"
-                className="flex items-center justify-between rounded-2xl bg-blue-50 p-4 font-semibold text-blue-700 transition hover:bg-blue-100"
-              >
-                <span>📝 Submit Complaint</span>
-                <span>→</span>
-              </Link>
+                icon="📝"
+                title="Submit Complaint"
+                text="Report a new issue"
+              />
 
-              <Link
+              <Action
                 to="/student/complaints"
-                className="flex items-center justify-between rounded-2xl bg-slate-50 p-4 font-semibold text-slate-700 transition hover:bg-slate-100"
-              >
-                <span>📋 My Complaints</span>
-                <span>→</span>
-              </Link>
+                icon="📋"
+                title="My Complaints"
+                text="Track your complaints"
+              />
 
-              <Link
+              <Action
                 to="/student"
-                className="flex items-center justify-between rounded-2xl bg-emerald-50 p-4 font-semibold text-emerald-700 transition hover:bg-emerald-100"
-              >
-                <span>🏠 Dashboard</span>
-                <span>→</span>
-              </Link>
+                icon="🏠"
+                title="Dashboard"
+                text="Back to overview"
+              />
 
             </div>
           </div>
+
         </section>
 
-        {/* Recent Activity */}
-        <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+        {/* Progress + Activity */}
+        <section className="mt-8 grid gap-8 lg:grid-cols-2">
 
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-xl font-black text-slate-900">
-                Recent Activity
-              </h3>
+          {/* Complaint Progress */}
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
 
-              <p className="mt-1 text-sm text-slate-500">
-                Latest updates on your complaints
+            <p className="text-xs font-bold uppercase tracking-widest text-cyan-400">
+              Overview
+            </p>
+
+            <h3 className="mt-2 text-2xl font-black text-white">
+              Complaint Progress
+            </h3>
+
+            <div className="mt-7">
+
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-semibold text-slate-300">
+                  Resolution Rate
+                </span>
+
+                <span className="text-lg font-black text-cyan-400">
+                  80%
+                </span>
+              </div>
+
+              <div className="mt-3 h-3 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full w-[80%] rounded-full bg-gradient-to-r from-cyan-400 to-blue-600" />
+              </div>
+
+              <p className="mt-3 text-xs text-slate-500">
+                4 out of 5 complaints have been processed successfully.
               </p>
+
             </div>
 
-            <Link
-              to="/student/complaints"
-              className="text-sm font-bold text-blue-600 hover:text-blue-800"
-            >
-              View All →
-            </Link>
-          </div>
+            <div className="mt-8 grid grid-cols-3 gap-3">
 
-          <div className="mt-6 space-y-4">
+              <MiniStat
+                value="05"
+                label="Submitted"
+              />
 
-            <Activity
-              icon="🟡"
-              title="Complaint is pending"
-              description="Classroom Fan Not Working"
-              time="Today"
-            />
+              <MiniStat
+                value="03"
+                label="Processed"
+              />
 
-            <Activity
-              icon="🔵"
-              title="Complaint under review"
-              description="Wi-Fi Not Working"
-              time="Yesterday"
-            />
+              <MiniStat
+                value="02"
+                label="Resolved"
+              />
 
-            <Activity
-              icon="🟢"
-              title="Complaint resolved"
-              description="Water Leakage"
-              time="3 days ago"
-            />
+            </div>
 
           </div>
+
+          {/* Recent Activity */}
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
+
+            <div className="flex items-center justify-between">
+
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-cyan-400">
+                  Timeline
+                </p>
+
+                <h3 className="mt-2 text-2xl font-black text-white">
+                  Recent Activity
+                </h3>
+              </div>
+
+              <span className="rounded-xl bg-white/5 px-3 py-2 text-xl">
+                ⚡
+              </span>
+
+            </div>
+
+            <div className="mt-6 space-y-5">
+
+              <Activity
+                icon="🟡"
+                title="Complaint submitted"
+                text="Classroom Fan Not Working"
+                time="Today"
+              />
+
+              <Activity
+                icon="🔵"
+                title="Complaint under review"
+                text="Wi-Fi Connection Problem"
+                time="Yesterday"
+              />
+
+              <Activity
+                icon="🟢"
+                title="Complaint resolved"
+                text="Water Leakage"
+                time="3 days ago"
+              />
+
+            </div>
+
+          </div>
+
         </section>
+
+        {/* Footer Message */}
+        <div className="mt-8 rounded-3xl border border-cyan-400/10 bg-gradient-to-r from-cyan-400/5 to-blue-500/5 p-6 text-center backdrop-blur-xl">
+
+          <div className="text-2xl">
+            💡
+          </div>
+
+          <h3 className="mt-2 font-bold text-white">
+            Need help with a campus issue?
+          </h3>
+
+          <p className="mt-1 text-sm text-slate-500">
+            Submit a complaint and let the right department handle it.
+          </p>
+
+          <Link
+            to="/student/submit"
+            className="mt-4 inline-block rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 text-sm font-bold text-white shadow-lg transition hover:-translate-y-1"
+          >
+            Submit New Complaint →
+          </Link>
+
+        </div>
 
       </main>
     </div>
   );
 }
 
-function InfoCard({ label, value, icon }) {
+/* Stat Card */
+function Stat({ icon, title, value, subtitle }) {
   return (
-    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5 transition hover:border-blue-200 hover:bg-blue-50/40">
-      <div className="flex items-center gap-3">
-        <span className="text-xl">{icon}</span>
+    <div className="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-400/20 hover:bg-white/[0.08]">
 
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+      <div className="flex items-center justify-between">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-2xl">
+          {icon}
+        </div>
+
+        <span className="text-3xl font-black text-white">
+          {value}
+        </span>
+      </div>
+
+      <p className="mt-5 font-bold text-slate-200">
+        {title}
+      </p>
+
+      <p className="mt-1 text-xs text-slate-500">
+        {subtitle}
+      </p>
+
+    </div>
+  );
+}
+
+/* Information Card */
+function Info({ icon, label, value }) {
+  return (
+    <div className="rounded-2xl border border-white/5 bg-slate-900/40 p-5 transition hover:border-cyan-400/20 hover:bg-slate-900/60">
+
+      <div className="flex items-center gap-4">
+
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/5 text-xl">
+          {icon}
+        </div>
+
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-600">
             {label}
           </p>
 
-          <p className="mt-1 font-bold text-slate-800">
+          <p className="mt-1 truncate font-bold text-slate-200">
             {value}
           </p>
         </div>
+
       </div>
     </div>
   );
 }
 
-function Activity({ icon, title, description, time }) {
+/* Action */
+function Action({ to, icon, title, text }) {
   return (
-    <div className="flex items-center gap-4 rounded-2xl bg-slate-50 p-4 transition hover:bg-slate-100">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-sm">
+    <Link
+      to={to}
+      className="flex items-center gap-4 rounded-2xl border border-white/5 bg-slate-900/40 p-4 transition hover:-translate-y-0.5 hover:border-cyan-400/20 hover:bg-slate-900/70"
+    >
+      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-400/10 text-xl">
         {icon}
       </div>
 
       <div className="flex-1">
-        <p className="font-bold text-slate-800">
+        <p className="font-bold text-slate-200">
           {title}
         </p>
 
-        <p className="text-sm text-slate-500">
-          {description}
+        <p className="mt-1 text-xs text-slate-600">
+          {text}
         </p>
       </div>
 
-      <span className="text-xs font-medium text-slate-400">
-        {time}
+      <span className="text-slate-600">
+        →
       </span>
+    </Link>
+  );
+}
+
+/* Mini Stat */
+function MiniStat({ value, label }) {
+  return (
+    <div className="rounded-2xl bg-slate-900/50 p-4 text-center">
+      <p className="text-2xl font-black text-white">
+        {value}
+      </p>
+
+      <p className="mt-1 text-xs text-slate-600">
+        {label}
+      </p>
+    </div>
+  );
+}
+
+/* Activity */
+function Activity({ icon, title, text, time }) {
+  return (
+    <div className="flex gap-4">
+
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/5">
+        {icon}
+      </div>
+
+      <div className="flex-1 border-b border-white/5 pb-4">
+
+        <div className="flex items-start justify-between gap-3">
+
+          <div>
+            <p className="font-bold text-slate-200">
+              {title}
+            </p>
+
+            <p className="mt-1 text-sm text-slate-500">
+              {text}
+            </p>
+          </div>
+
+          <span className="shrink-0 text-xs text-slate-600">
+            {time}
+          </span>
+
+        </div>
+
+      </div>
+
     </div>
   );
 }
