@@ -1,6 +1,34 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function StudentProfile() {
+  const [editing, setEditing] = useState(false);
+
+  const [profile, setProfile] = useState({
+    name: "Student Name",
+    studentId: "STU001",
+    department: "Information Technology",
+    year: "2025 - 2026",
+    email: "student@example.com",
+    phone: "+91 XXXXX XXXXX",
+  });
+
+  const handleChange = (e) => {
+    setProfile({
+      ...profile,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSave = () => {
+    setEditing(false);
+    alert("Profile updated successfully!");
+  };
+
+  const handleCancel = () => {
+    setEditing(false);
+  };
+
   return (
     <div className="min-h-screen bg-slate-950">
 
@@ -53,7 +81,7 @@ function StudentProfile() {
               <div className="relative">
 
                 <div className="flex h-32 w-32 items-center justify-center rounded-full border-4 border-white/20 bg-white/15 text-5xl font-black text-white shadow-2xl backdrop-blur-xl">
-                  S
+                  {profile.name.charAt(0).toUpperCase()}
                 </div>
 
                 <div className="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-full border-4 border-indigo-700 bg-emerald-400">
@@ -70,27 +98,51 @@ function StudentProfile() {
                 </span>
 
                 <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">
-                  Student Name
+                  {profile.name}
                 </h2>
 
                 <p className="mt-2 text-blue-100">
-                  Information Technology • STU001
+                  {profile.department} • {profile.studentId}
                 </p>
 
                 <p className="mt-1 text-sm text-blue-200">
-                  student@example.com
+                  {profile.email}
                 </p>
 
               </div>
 
             </div>
 
-            <button
-              type="button"
-              className="rounded-xl bg-white px-6 py-3 font-bold text-blue-700 shadow-xl transition hover:-translate-y-1 hover:bg-blue-50"
-            >
-              ✏️ Edit Profile
-            </button>
+            {/* Edit / Save Buttons */}
+            {!editing ? (
+              <button
+                type="button"
+                onClick={() => setEditing(true)}
+                className="rounded-xl bg-white px-6 py-3 font-bold text-blue-700 shadow-xl transition hover:-translate-y-1 hover:bg-blue-50"
+              >
+                ✏️ Edit Profile
+              </button>
+            ) : (
+              <div className="flex gap-3">
+
+                <button
+                  type="button"
+                  onClick={handleCancel}
+                  className="rounded-xl border border-white/20 bg-white/10 px-5 py-3 font-bold text-white transition hover:bg-white/20"
+                >
+                  Cancel
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleSave}
+                  className="rounded-xl bg-emerald-400 px-5 py-3 font-bold text-slate-950 shadow-xl transition hover:-translate-y-1 hover:bg-emerald-300"
+                >
+                  ✓ Save Changes
+                </button>
+
+              </div>
+            )}
 
           </div>
         </section>
@@ -158,41 +210,95 @@ function StudentProfile() {
 
             <div className="mt-7 grid gap-4 sm:grid-cols-2">
 
-              <Info
-                icon="👤"
-                label="Full Name"
-                value="Student Name"
-              />
+              {editing ? (
+                <>
+                  <EditField
+                    icon="👤"
+                    label="Full Name"
+                    name="name"
+                    value={profile.name}
+                    onChange={handleChange}
+                  />
 
-              <Info
-                icon="🪪"
-                label="Student ID"
-                value="STU001"
-              />
+                  <EditField
+                    icon="🪪"
+                    label="Student ID"
+                    name="studentId"
+                    value={profile.studentId}
+                    onChange={handleChange}
+                  />
 
-              <Info
-                icon="💻"
-                label="Department"
-                value="Information Technology"
-              />
+                  <EditField
+                    icon="💻"
+                    label="Department"
+                    name="department"
+                    value={profile.department}
+                    onChange={handleChange}
+                  />
 
-              <Info
-                icon="🎓"
-                label="Academic Year"
-                value="2025 - 2026"
-              />
+                  <EditField
+                    icon="🎓"
+                    label="Academic Year"
+                    name="year"
+                    value={profile.year}
+                    onChange={handleChange}
+                  />
 
-              <Info
-                icon="✉️"
-                label="Email"
-                value="student@example.com"
-              />
+                  <EditField
+                    icon="✉️"
+                    label="Email"
+                    name="email"
+                    value={profile.email}
+                    onChange={handleChange}
+                  />
 
-              <Info
-                icon="📱"
-                label="Phone"
-                value="+91 XXXXX XXXXX"
-              />
+                  <EditField
+                    icon="📱"
+                    label="Phone"
+                    name="phone"
+                    value={profile.phone}
+                    onChange={handleChange}
+                  />
+                </>
+              ) : (
+                <>
+                  <Info
+                    icon="👤"
+                    label="Full Name"
+                    value={profile.name}
+                  />
+
+                  <Info
+                    icon="🪪"
+                    label="Student ID"
+                    value={profile.studentId}
+                  />
+
+                  <Info
+                    icon="💻"
+                    label="Department"
+                    value={profile.department}
+                  />
+
+                  <Info
+                    icon="🎓"
+                    label="Academic Year"
+                    value={profile.year}
+                  />
+
+                  <Info
+                    icon="✉️"
+                    label="Email"
+                    value={profile.email}
+                  />
+
+                  <Info
+                    icon="📱"
+                    label="Phone"
+                    value={profile.phone}
+                  />
+                </>
+              )}
 
             </div>
           </div>
@@ -218,7 +324,7 @@ function StudentProfile() {
               />
 
               <Action
-                to="/student/complaints"
+                to="/student/complaint"
                 icon="📋"
                 title="My Complaints"
                 text="Track your complaints"
@@ -274,20 +380,9 @@ function StudentProfile() {
 
             <div className="mt-8 grid grid-cols-3 gap-3">
 
-              <MiniStat
-                value="05"
-                label="Submitted"
-              />
-
-              <MiniStat
-                value="03"
-                label="Processed"
-              />
-
-              <MiniStat
-                value="02"
-                label="Resolved"
-              />
+              <MiniStat value="05" label="Submitted" />
+              <MiniStat value="03" label="Processed" />
+              <MiniStat value="02" label="Resolved" />
 
             </div>
 
@@ -372,12 +467,45 @@ function StudentProfile() {
   );
 }
 
+/* Edit Field */
+function EditField({ icon, label, name, value, onChange }) {
+  return (
+    <div className="rounded-2xl border border-cyan-400/20 bg-slate-900/50 p-5">
+
+      <div className="flex items-center gap-4">
+
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-cyan-400/10 text-xl">
+          {icon}
+        </div>
+
+        <div className="min-w-0 flex-1">
+
+          <p className="text-xs font-semibold uppercase tracking-wide text-cyan-400">
+            {label}
+          </p>
+
+          <input
+            type="text"
+            name={name}
+            value={value}
+            onChange={onChange}
+            className="mt-2 w-full rounded-lg border border-white/10 bg-slate-950 px-3 py-2 font-bold text-white outline-none focus:border-cyan-400"
+          />
+
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
 /* Stat Card */
 function Stat({ icon, title, value, subtitle }) {
   return (
     <div className="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-400/20 hover:bg-white/[0.08]">
 
       <div className="flex items-center justify-between">
+
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-2xl">
           {icon}
         </div>
@@ -385,6 +513,7 @@ function Stat({ icon, title, value, subtitle }) {
         <span className="text-3xl font-black text-white">
           {value}
         </span>
+
       </div>
 
       <p className="mt-5 font-bold text-slate-200">
@@ -411,6 +540,7 @@ function Info({ icon, label, value }) {
         </div>
 
         <div className="min-w-0">
+
           <p className="text-xs font-semibold uppercase tracking-wide text-slate-600">
             {label}
           </p>
@@ -418,6 +548,7 @@ function Info({ icon, label, value }) {
           <p className="mt-1 truncate font-bold text-slate-200">
             {value}
           </p>
+
         </div>
 
       </div>
@@ -432,11 +563,13 @@ function Action({ to, icon, title, text }) {
       to={to}
       className="flex items-center gap-4 rounded-2xl border border-white/5 bg-slate-900/40 p-4 transition hover:-translate-y-0.5 hover:border-cyan-400/20 hover:bg-slate-900/70"
     >
+
       <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-400/10 text-xl">
         {icon}
       </div>
 
       <div className="flex-1">
+
         <p className="font-bold text-slate-200">
           {title}
         </p>
@@ -444,11 +577,13 @@ function Action({ to, icon, title, text }) {
         <p className="mt-1 text-xs text-slate-600">
           {text}
         </p>
+
       </div>
 
       <span className="text-slate-600">
         →
       </span>
+
     </Link>
   );
 }
@@ -457,6 +592,7 @@ function Action({ to, icon, title, text }) {
 function MiniStat({ value, label }) {
   return (
     <div className="rounded-2xl bg-slate-900/50 p-4 text-center">
+
       <p className="text-2xl font-black text-white">
         {value}
       </p>
@@ -464,6 +600,7 @@ function MiniStat({ value, label }) {
       <p className="mt-1 text-xs text-slate-600">
         {label}
       </p>
+
     </div>
   );
 }
@@ -482,6 +619,7 @@ function Activity({ icon, title, text, time }) {
         <div className="flex items-start justify-between gap-3">
 
           <div>
+
             <p className="font-bold text-slate-200">
               {title}
             </p>
@@ -489,6 +627,7 @@ function Activity({ icon, title, text, time }) {
             <p className="mt-1 text-sm text-slate-500">
               {text}
             </p>
+
           </div>
 
           <span className="shrink-0 text-xs text-slate-600">
