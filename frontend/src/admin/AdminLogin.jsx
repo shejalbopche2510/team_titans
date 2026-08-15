@@ -18,7 +18,7 @@ function AdminLogin() {
   };
 
   return (
-    <div className="login-container">
+    <div className="admin-login-page">
 
       <div className="login-card">
 
@@ -48,7 +48,8 @@ function AdminLogin() {
             required
           />
 
-          <button type="submit">
+          <button type="submit"
+          classname="login-button">
             Login
           </button>
 
