@@ -46,7 +46,7 @@ function MyComplaint() {
     <div className="min-h-screen bg-slate-950">
 
       {/* Background */}
-      <div className="fixed inset-0 -z-0 overflow-hidden">
+      <div className="fixed inset-0 z-0 overflow-hidden">
         <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-blue-600/20 blur-3xl" />
         <div className="absolute right-0 top-1/3 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
         <div className="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-indigo-600/10 blur-3xl" />
@@ -83,7 +83,7 @@ function MyComplaint() {
 
             <Link
               to="/student/submit"
-              className="rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 font-bold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-1"
+              className="rounded-xl bg-linear-to-r from-cyan-500 to-blue-600 px-5 py-3 font-bold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-1"
             >
               + New Complaint
             </Link>
@@ -190,7 +190,7 @@ function MyComplaint() {
 /* Statistics Card */
 function StatCard({ title, value, icon, text }) {
   return (
-    <div className="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-400/20 hover:bg-white/[0.08]">
+    <div className="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-400/20 hover:bg-white/8">
 
       <div className="flex items-center justify-between">
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-2xl">
@@ -232,7 +232,7 @@ function ComplaintCard({ complaint }) {
     <div className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-400/20 hover:shadow-2xl hover:shadow-blue-950/30">
 
       {/* Top line */}
-      <div className="h-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600" />
+      <div className="h-1 bg-linear-to-r from-cyan-400 via-blue-500 to-indigo-600" />
 
       <div className="p-6 sm:p-7">
 
@@ -241,7 +241,7 @@ function ComplaintCard({ complaint }) {
           {/* Details */}
           <div className="flex gap-4">
 
-            <div className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400/20 to-blue-500/20 text-2xl sm:flex">
+            <div className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-cyan-400/20 to-blue-500/20 text-2xl sm:flex">
               📝
             </div>
 
@@ -298,7 +298,7 @@ function ComplaintCard({ complaint }) {
 
             <Link
               to={`/student/complaints/${complaint.id}`}
-              className="rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-500/10 transition hover:scale-105"
+              className="rounded-xl bg-linear-to-r from-cyan-500 to-blue-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-500/10 transition hover:scale-105"
             >
               View Details →
             </Link>
